@@ -3,10 +3,8 @@
 
 from pyspark.sql import SparkSession
 
-from pyschema2 import JSONConverter, py_type_from_json_schema, array_of, \
-    STRING_TYPE, INTEGER_TYPE, BOOLEAN_TYPE, \
-    NULLABLE_STRING_TYPE, NULLABLE_INTEGER_TYPE, NULLABLE_BOOLEAN_TYPE, \
-    TIMESTAMP_TYPE, NULLABLE_TIMESTAMP_TYPE
+from pyschema2 import JSONConverter, py_type_from_json_schema, array_of, nullable, \
+    STRING_TYPE, LONG_TYPE, BOOLEAN_TYPE, TIMESTAMP_TYPE, print_pyschema
 
 
 def get_spark():
@@ -14,39 +12,39 @@ def get_spark():
     #     config("spark.executor.memory", "2g").\
     #     config("spark.driver.memory", "2g").\
     #     appName(f"RunJob-{os.getpid()}").getOrCreate()
-    spark = SparkSession.builder.appName(f"pyspark-unit-test").getOrCreate()
+    spark = SparkSession.builder.appName("pyspark-unit-test").getOrCreate()
     return spark
 
-CORD_TYPE = {
+CORD_TYPE = nullable({
     "type": "object",
     "properties": {
-        "x": NULLABLE_INTEGER_TYPE,
-        "y": NULLABLE_INTEGER_TYPE,
+        "x": LONG_TYPE,
+        "y": LONG_TYPE,
     }
-}
+})
 
-POLYGON_TYPE = {
+POLYGON_TYPE = nullable({
     "type": "object",
     "properties": {
-        "receivedAt": NULLABLE_TIMESTAMP_TYPE,
-        "color": NULLABLE_STRING_TYPE,
-        "cords": array_of(CORD_TYPE, nullable=True)
+        "receivedAt": TIMESTAMP_TYPE,
+        "color":      STRING_TYPE,
+        "cords": array_of(CORD_TYPE)
     }
-
-}
+})
 
 def app_main(spark):
     schema = POLYGON_TYPE
     pyschema, _ = py_type_from_json_schema(schema)
-    # print(pyschema)
-
+    print("**********************")
+    print_pyschema(pyschema)
+    print("**********************")
     # rows = [
     #     {"x": 1, "y": 2},
     #     {"x": 3, "y": 4},
     # ]
 
     rows = [
-        {"receivedAt": "2020-08-19T20:19:58.261Z", "color": "red",   "cords": [{"x": 1, "y": 2}]},
+        {"receivedAt": "2020-08-19T20:19:58.261Z", "color": "red",   "cords": [{"y": 2}]},
         {"receivedAt": "2020-08-19T20:19:58.261Z", "color": "green", "cords": [{"x": 3, "y": 4}]},
         {"receivedAt": "2020-08-19T20:19:58.261Z", "color": "green", "id": 1},
     ]

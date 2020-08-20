@@ -11,7 +11,7 @@ with open(os.path.join(HERE, "README.md"), "r") as f:
 # This call to setup() does all the work
 setup(
     name="pyschema2",
-    version="0.0.1",
+    version="0.0.2",
     description="Schema generation and validation for pyspark",
     long_description=README,
     long_description_content_type="text/markdown",

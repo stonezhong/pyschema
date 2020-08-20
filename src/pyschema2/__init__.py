@@ -1,5 +1,2 @@
-from .main import JSONConverter, py_type_from_json_schema, array_of, \
-    STRING_TYPE, INTEGER_TYPE, BOOLEAN_TYPE, \
-    NULLABLE_STRING_TYPE, NULLABLE_INTEGER_TYPE, NULLABLE_BOOLEAN_TYPE, \
-    TIMESTAMP_TYPE, NULLABLE_TIMESTAMP_TYPE
-
+from .main import JSONConverter, py_type_from_json_schema, array_of, nullable, \
+    STRING_TYPE, LONG_TYPE, BOOLEAN_TYPE, TIMESTAMP_TYPE, DOUBLE_TYPE, print_pyschema
