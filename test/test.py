@@ -3,7 +3,7 @@
 
 from pyspark.sql import SparkSession
 
-from pyschema import JSONConverter, py_type_from_json_schema, array_of, \
+from pyschema2 import JSONConverter, py_type_from_json_schema, array_of, \
     STRING_TYPE, INTEGER_TYPE, BOOLEAN_TYPE, \
     NULLABLE_STRING_TYPE, NULLABLE_INTEGER_TYPE, NULLABLE_BOOLEAN_TYPE, \
     TIMESTAMP_TYPE, NULLABLE_TIMESTAMP_TYPE
@@ -57,7 +57,7 @@ def app_main(spark):
     #     {"color": "green"},
     # ]
 
-    parquet_filename = "/Users/shizhong/tmp/foo.parquet"
+    parquet_filename = "/home/stonezhong/temp/foo.parquet"
 
     jcvt = JSONConverter()
     jcvt.json_rows_to_parquet(spark, rows, pyschema, parquet_filename)

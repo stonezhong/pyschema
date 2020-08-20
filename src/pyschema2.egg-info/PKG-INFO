@@ -1,0 +1,16 @@
+Metadata-Version: 2.1
+Name: pyschema2
+Version: 0.0.1
+Summary: Schema generation and validation for pyspark
+Home-page: https://github.com/stonezhong/pyschema
+Author: Stone Zhong
+Author-email: stonezhong@hotmail.com
+License: MIT
+Description: # pyschema
+        Schema functions for pyspark
+        
+Platform: UNKNOWN
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 2
+Classifier: Programming Language :: Python :: 3
+Description-Content-Type: text/markdown
